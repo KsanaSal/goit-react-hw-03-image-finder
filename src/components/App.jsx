@@ -6,7 +6,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
 import { fetchImages } from './FetchImages';
 import { Loader } from './Loader/Loader';
-import { Modal } from './Modal/Modal';
+// import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
