@@ -1,4 +1,6 @@
 // import { Component } from 'react';
+import { Button } from './Button/Button';
+import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
 
 export const App = () => {
@@ -14,6 +16,8 @@ export const App = () => {
       }}
     >
       <Searchbar />
+      <ImageGallery />
+      <Button></Button>
     </div>
   );
 };
