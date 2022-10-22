@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ButtonMore = styled.button`
   padding: 8px 16px;
+  margin: 0 auto 30px;
   border-radius: 2px;
   background-color: #7404de;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
