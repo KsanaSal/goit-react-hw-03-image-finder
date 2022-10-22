@@ -4,7 +4,7 @@ import { AiOutlineSearch as Search } from 'react-icons/ai';
 export const SearchbarHeader = styled.header`
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   z-index: 1100;
   display: flex;
   justify-content: center;

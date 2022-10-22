@@ -1,29 +1,54 @@
 import { Component } from 'react';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from './Button/Button';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Searchbar } from './Searchbar/Searchbar';
+import { fetchImages } from './FetchImages';
+import { Loader } from './Loader/Loader';
 
 export class App extends Component {
   state = {
-    images: {},
+    images: [],
+    error: null,
+    isLoadingImage: false,
   };
-  componentDidMount() {
-    const API_KEY = '29499204-a77a5df2d9e32bd170e84cd3d';
-    fetch(
-      `https://pixabay.com/api/?q=cat&page=1&key=${API_KEY}=photo&orientation=horizontal&per_page=12`
-    )
-      .then(result => result.json())
-      .then(images => this.setState({images: images.hits}));
+  async componentDidMount() {
+    try {
+      this.setState({ isLoadingImage: true });
+      const images = await fetchImages();
+      // console.log(response.data.hits);
+      this.setState({ images: images });
+    } catch (error) {
+      // this.setState({ error: error.message });
+      Notify.failure('Sorry, wrong request, try reloading the page');
+      console.error(error);
+    } finally {
+      this.setState({ isLoadingImage: false });
+    }
   }
 
+  buildSelectImageList = () => {
+    console.log(this.state.images);
+    return this.state.images.map(image => ({
+      id: image.id,
+      webformatURL: image.webformatURL,
+      largeImageURL: image.largeImageURL,
+      tags: image.tags,
+    }));
+  };
   render() {
     console.log(this.state.images);
+    const { isLoadingImage } = this.state;
+    const imageList = this.buildSelectImageList();
+    console.log(imageList);
     return (
       <div
         style={{
           flexDirection: 'column',
-          height: '100vh',
+          // height: '100vh',
           display: 'flex',
+          // marginBottom: 30,
           // justifyContent: 'center',
           // alignItems: 'center',
           fontSize: 40,
@@ -31,8 +56,13 @@ export class App extends Component {
         }}
       >
         <Searchbar />
-        <ImageGallery />
-        <Button></Button>
+        {isLoadingImage && <Loader />}
+        {!isLoadingImage && (
+          <>
+            <ImageGallery imageList={imageList} />
+            <Button></Button>
+          </>
+        )}
       </div>
     );
   }
