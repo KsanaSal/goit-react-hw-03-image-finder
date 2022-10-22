@@ -1,10 +1,10 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ButtonMore } from './Button.styled';
 
 export class Button extends Component {
-  handleButton = event => {
-      this.props.changePage(1);
-      console.log(event);
+  handleButton = () => {
+    this.props.changePage();
   };
   render() {
     return (
@@ -14,3 +14,7 @@ export class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};

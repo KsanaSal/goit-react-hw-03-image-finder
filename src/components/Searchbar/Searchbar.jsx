@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   AiOutlineSearch,
@@ -15,7 +16,6 @@ export class Searchbar extends Component {
 
   handleOnChange = event => {
     this.setState({ searchString: event.currentTarget.value.toLowerCase() });
-    console.log(event.currentTarget.value.toLowerCase());
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -24,7 +24,6 @@ export class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(this.state.searchString);
-    // this.setState({ searchString: '' });
   };
   render() {
     return (
@@ -47,3 +46,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

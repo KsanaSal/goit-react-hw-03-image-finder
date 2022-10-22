@@ -51,7 +51,7 @@ export class App extends Component {
         console.error(error);
       } finally {
         this.setState({ isLoadingImage: false });
-        this.scrollToButton();
+        // this.scrollToButton();
       }
     }
   }
@@ -71,7 +71,7 @@ export class App extends Component {
     console.log(searchNameImages);
   };
 
-  changePageNumber = pageNumber => {
+  changePageNumber = () => {
     this.setState(prevState => {
       return { page: prevState.page + 1 };
     });
@@ -80,10 +80,10 @@ export class App extends Component {
     // this.setState({ page: pageNumber + 1 });
   };
 
-  scrollToButton = () => {
-    console.log(this.load);
-    this.load.scrollIntoView({ behavior: 'smooth' });
-  };
+  // scrollToButton = () => {
+  //   console.log(this.load);
+  //   this.load.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   render() {
     console.log(this.state);
