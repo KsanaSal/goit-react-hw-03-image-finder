@@ -5,7 +5,6 @@ const override = {
   left: '30%',
   top: '25%',
   display: 'block',
-  //   marging: '0 auto',
 };
 export const Loader = () => {
   return (

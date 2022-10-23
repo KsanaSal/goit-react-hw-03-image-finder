@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { AiOutlineSearch as Search } from 'react-icons/ai';
 
-export const SearchbarHeader = styled.header`
+export const SearchBarHeader = styled.header`
   top: 0;
   left: 0;
   position: fixed;

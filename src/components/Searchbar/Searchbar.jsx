@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   AiOutlineSearch,
-  SearchbarHeader,
+  SearchBarHeader,
   SearchForm,
   SearchFormButton,
   SearchFormInput,
-} from './Searchbar.styled';
+} from './SearchBar.styled';
 
-export class Searchbar extends Component {
+export class SearchBar extends Component {
   state = {
     searchString: '',
   };
@@ -27,7 +27,7 @@ export class Searchbar extends Component {
   };
   render() {
     return (
-      <SearchbarHeader>
+      <SearchBarHeader>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchFormButton type="submit">
             <AiOutlineSearch />
@@ -42,11 +42,11 @@ export class Searchbar extends Component {
             placeholder="Search images and photos"
           />
         </SearchForm>
-      </SearchbarHeader>
+      </SearchBarHeader>
     );
   }
 }
 
-Searchbar.propTypes = {
+SearchBar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
