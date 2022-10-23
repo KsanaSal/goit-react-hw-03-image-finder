@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from './Button/Button';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { SearchBar } from './SearchBar/SearchBar';
+import { SearchBar } from './SearchingBar/SearchingBar';
 import { fetchImages } from './FetchImages';
 import { Loader } from './Loader/Loader';
 
