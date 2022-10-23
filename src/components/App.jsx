@@ -26,6 +26,7 @@ export class App extends Component {
         );
         if (searchString !== prevState.searchString) {
           this.setState({ images: images });
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           this.setState(prevState => {
             return { images: [...prevState.images, ...images] };
@@ -73,10 +74,9 @@ export class App extends Component {
       >
         <SearchBar onSubmit={this.handleFormSubmit} />
         {isLoadingImage && <Loader />}
-        {!isLoadingImage && this.state.images.length > 0 && (
+        <ImageGallery imageList={imageList} />
+        {this.state.images.length > 0 && (
           <>
-            <ImageGallery imageList={imageList} />
-
             <Button
               changePage={this.changePageNumber}
               ref={load => {
