@@ -14,6 +14,8 @@ export class App extends Component {
     isLoadingImage: false,
     searchString: '',
     page: 1,
+    total: 0,
+    totalHits: 0,
   };
   async componentDidUpdate(prevProps, prevState) {
     const { searchString, page } = this.state;
@@ -25,11 +27,15 @@ export class App extends Component {
           this.state.page
         );
         if (searchString !== prevState.searchString) {
-          this.setState({ images: images });
+          this.setState({
+            images: images.hits,
+            total: images.total,
+            totalHits: images.totalHits,
+          });
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           this.setState(prevState => {
-            return { images: [...prevState.images, ...images] };
+            return { images: [...prevState.images, ...images.hits] };
           });
         }
       } catch (error) {
@@ -51,7 +57,9 @@ export class App extends Component {
   };
 
   handleFormSubmit = searchNameImages => {
-    this.setState({ searchString: searchNameImages, page: 1 });
+    if (searchNameImages !== this.state.searchString) {
+      this.setState({ searchString: searchNameImages, page: 1, images: [] });
+    }
   };
 
   changePageNumber = () => {
@@ -61,7 +69,7 @@ export class App extends Component {
   };
 
   render() {
-    const { isLoadingImage } = this.state;
+    const { isLoadingImage, images, total, page, totalHits } = this.state;
     const imageList = this.buildSelectImageList();
     return (
       <div
@@ -75,7 +83,7 @@ export class App extends Component {
         <SearchBar onSubmit={this.handleFormSubmit} />
         {isLoadingImage && <Loader />}
         <ImageGallery imageList={imageList} />
-        {this.state.images.length > 0 && (
+        {images.length > 0 && total > 12 && totalHits > page * 12 && (
           <>
             <Button
               changePage={this.changePageNumber}

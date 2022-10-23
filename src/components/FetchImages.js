@@ -5,5 +5,5 @@ export const fetchImages = async (value, page) => {
   const response = await axios.get(
     `https://pixabay.com/api/?key=${API_KEY}&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=12`
   );
-  return response.data.hits;
+  return response.data;
 };
